@@ -5,6 +5,7 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.util.Log
 
 class DataBaseHelper(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,null, DATABASE_VERSION) {
 
@@ -48,6 +49,18 @@ class DataBaseHelper(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,n
 
         return cursor
 
+    }
+
+    fun updateData(id:String,taskName:String,taskReview:String){
+        val db:SQLiteDatabase = this.writableDatabase
+
+        val cv = ContentValues()
+        cv.put(COLUMN_TASK,taskName)
+        cv.put(COLUMN_REVIEW,taskReview)
+        val rows = db.update(TABLE_NAME, cv, "_id = ?", arrayOf(id))
+        if (rows!=1){
+            Log.e("Res","Good")
+        }
     }
 
 }

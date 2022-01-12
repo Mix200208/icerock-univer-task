@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
     private val myDb  = DataBaseHelper(this)
 
     companion object {
-        val INTENT_PARCELABLE = "OBJECT_INTENT"
+        const val INTENT_PARCELABLE = "OBJECT_INTENT"
     }
 
 
@@ -83,7 +83,7 @@ class MainActivity : AppCompatActivity() {
             Log.e("Answer"," DB empty")
         }else{
             while (cursor?.moveToNext()!!){
-                listTask.add(Task(cursor.getString(1),cursor.getString(2)))
+                listTask.add(Task(cursor.getInt(0),cursor.getString(1),cursor.getString(2)))
             }
         }
     }
