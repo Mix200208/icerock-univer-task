@@ -2,6 +2,7 @@ package com.example.todolistkotlin.DB
 
 import android.content.ContentValues
 import android.content.Context
+import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
@@ -37,5 +38,16 @@ class DataBaseHelper(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,n
         db.insert(TABLE_NAME,null,cv)
     }
 
+    fun readAllData():Cursor?{
+        val query = "SELECT * FROM $TABLE_NAME"
+        val db = this.readableDatabase
+        var cursor: Cursor? = null
+        if(db!=null){
+            cursor = db.rawQuery(query,null)
+        }
+
+        return cursor
+
+    }
 
 }

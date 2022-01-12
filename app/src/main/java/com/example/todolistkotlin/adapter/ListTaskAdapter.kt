@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.todolistkotlin.R
 import com.example.todolistkotlin.model.Task
 
-class ListTaskAdapter(private val listener:(Task)->Unit): RecyclerView.Adapter<ListTaskAdapter.TaskViewHolder>() {
+class ListTaskAdapter(private val listener:(Task)->Unit, private val onDeleteItem: () -> Unit): RecyclerView.Adapter<ListTaskAdapter.TaskViewHolder>() {
 
   val listTask:MutableList<Task> = mutableListOf()
 
@@ -27,13 +27,13 @@ class ListTaskAdapter(private val listener:(Task)->Unit): RecyclerView.Adapter<L
 
             val task: TextView = item.findViewById(R.id.taskName)
             val review: TextView = item.findViewById(R.id.taskReview)
-            val but:ImageButton = item.findViewById(R.id.createToDoButton)
+            val but:ImageButton = item.findViewById(R.id.deleteButton)
 
 
-            fun bindView(taskObj: Task,listener: (Task) -> Unit){
+            fun bindView(taskObj: Task,listener: (Task) -> Unit,onDeleteItem: () -> Unit){
                 task.text = taskObj.task
                 review.text = taskObj.review
-                but.setOnClickListener { }
+                but.setOnClickListener { onDeleteItem() }
                 itemView.setOnClickListener { listener(taskObj)}
             }
 
@@ -47,7 +47,7 @@ class ListTaskAdapter(private val listener:(Task)->Unit): RecyclerView.Adapter<L
 }
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
-        holder.bindView(listTask[position],listener)
+        holder.bindView(listTask[position],listener,onDeleteItem)
     }
 
     override fun getItemCount(): Int {
