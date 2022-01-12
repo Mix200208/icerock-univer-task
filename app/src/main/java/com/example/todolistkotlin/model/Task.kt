@@ -1,3 +1,7 @@
 package com.example.todolistkotlin.model
 
-data class Task(val task:String,val review:String?)
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
+data class Task(val task:String,val review:String?):Parcelable

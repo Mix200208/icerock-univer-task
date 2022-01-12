@@ -1,4 +1,4 @@
-package com.example.todolistkotlin.adapter
+package com.example.todolistkotlin.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.View
