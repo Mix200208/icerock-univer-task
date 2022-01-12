@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
+    android:background="@color/white"
     tools:context=".ui.AddActivity">
     <EditText
         android:id="@+id/input_task_name"

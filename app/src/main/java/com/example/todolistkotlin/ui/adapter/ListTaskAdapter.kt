@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.todolistkotlin.R
 import com.example.todolistkotlin.model.Task
 
-class ListTaskAdapter(private val listener:(Task)->Unit, private val onDeleteItem: () -> Unit): RecyclerView.Adapter<ListTaskAdapter.TaskViewHolder>() {
+class ListTaskAdapter(private val listener:(Task)->Unit, private val onDeleteItem: (Task) -> Unit): RecyclerView.Adapter<ListTaskAdapter.TaskViewHolder>() {
 
   val listTask:MutableList<Task> = mutableListOf()
 
@@ -30,10 +30,10 @@ class ListTaskAdapter(private val listener:(Task)->Unit, private val onDeleteIte
             val but:ImageButton = item.findViewById(R.id.deleteButton)
 
 
-            fun bindView(taskObj: Task,listener: (Task) -> Unit,onDeleteItem: () -> Unit){
+            fun bindView(taskObj: Task,listener: (Task) -> Unit,onDeleteItem: (Task) -> Unit){
                 task.text = taskObj.task
                 review.text = taskObj.review
-                but.setOnClickListener { onDeleteItem() }
+                but.setOnClickListener { onDeleteItem(taskObj) }
                 itemView.setOnClickListener { listener(taskObj)}
             }
 

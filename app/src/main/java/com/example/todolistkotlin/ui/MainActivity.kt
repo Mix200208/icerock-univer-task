@@ -31,10 +31,12 @@ class MainActivity : AppCompatActivity() {
 
         val taskAdapter = ListTaskAdapter({ val intent = Intent(this, EditActivity::class.java)
             intent.putExtra(INTENT_PARCELABLE, it)
-            startActivity(intent)},{}).apply {
+            startActivity(intent)}, {myDb.deleteData(it.id.toString())
+            this.listTask.remove(it)}).apply {
             addAllData()
             setData(listTask)
         }
+
 
        findViewById<RecyclerView>(R.id.task_rv).apply {
 
@@ -44,7 +46,6 @@ class MainActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(this.context)
 
         }
-
 
 
         findViewById<ImageButton>(R.id.createToDoButton).apply {
