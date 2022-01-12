@@ -33,7 +33,7 @@ class DataBaseHelper(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,n
         val db:SQLiteDatabase = this.writableDatabase
         val cv = ContentValues()
         cv.put(COLUMN_TASK,taskName)
-        cv.put(COLUMN_TASK,taskReview)
+        cv.put(COLUMN_REVIEW,taskReview)
         db.insert(TABLE_NAME,null,cv)
     }
 
