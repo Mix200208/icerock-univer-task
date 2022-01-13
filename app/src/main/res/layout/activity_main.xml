@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/white"
     tools:context=".ui.MainActivity">
 
 
@@ -14,6 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/item_recyclerview"
+        android:background="@color/white"
         android:layout_weight="1" >
 
     </androidx.recyclerview.widget.RecyclerView>
@@ -26,6 +28,7 @@
         android:gravity="center"
         app:icon="@drawable/ic_baseline_restart_alt_24"
         android:layout_gravity="center"
+        android:background="@color/white"
         style="?attr/materialButtonOutlinedStyle"
         android:layout_marginBottom="5dp"
         android:layout_weight="0.1"/>

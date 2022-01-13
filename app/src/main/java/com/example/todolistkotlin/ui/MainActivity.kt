@@ -4,6 +4,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.ImageButton
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -32,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         val taskAdapter = ListTaskAdapter({ val intent = Intent(this, EditActivity::class.java)
             intent.putExtra(INTENT_PARCELABLE, it)
             startActivity(intent)}, {myDb.deleteData(it.id.toString())
-            this.listTask.remove(it)}).apply {
+            this.recreate()}).apply {
             addAllData()
             setData(listTask)
         }
@@ -71,11 +74,22 @@ class MainActivity : AppCompatActivity() {
 
 
 
-
-
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.apply {
+            inflate(R.menu.main,menu)
+        }
+        return super.onCreateOptionsMenu(menu)
+    }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId==R.id.delete_all){
+            myDb.deleteAllData()
+            this.recreate()
+        }
+        return super.onOptionsItemSelected(item)
+    }
 
     private fun addAllData(){
 

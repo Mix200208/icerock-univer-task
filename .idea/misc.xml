@@ -5,8 +5,9 @@
       <map>
         <entry key="app/src/main/res/layout/activity_add.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/activity_edit.xml" value="0.19610507246376813" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.19610507246376813" />
-        <entry key="app/src/main/res/layout/item_recyclerview.xml" value="0.19610507246376813" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.22405154463173688" />
+        <entry key="app/src/main/res/layout/item_recyclerview.xml" value="0.24642550703408073" />
+        <entry key="app/src/main/res/menu/main.xml" value="0.37152659098307295" />
       </map>
     </option>
   </component>
