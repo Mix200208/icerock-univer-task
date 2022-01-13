@@ -31,9 +31,8 @@
             android:layout_height="wrap_content"
             android:text="Обновить данные"
             android:gravity="center"
-            app:icon="@drawable/ic_baseline_restart_alt_24"
-            android:layout_gravity="center"
             android:background="@color/white"
+            android:layout_gravity="center"
             style="?attr/materialButtonOutlinedStyle"
             android:layout_marginBottom="5dp"
             android:layout_weight="0.1" />

@@ -1,9 +1,9 @@
-package com.example.todolistkotlin.ViewModels.Factory
+package com.example.todolistkotlin.viewmodels.factory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.todolistkotlin.DB.DataBaseHelper
-import com.example.todolistkotlin.ViewModels.AddViewModel
+import com.example.todolistkotlin.viewmodels.AddViewModel
 
 
 class AddViewModelFactory(private val myDb: DataBaseHelper): ViewModelProvider.Factory {

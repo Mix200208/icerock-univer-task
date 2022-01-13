@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.todolistkotlin.ViewModels.EditViewModel" />
+            type="com.example.todolistkotlin.viewmodels.EditViewModel" />
 
     </data>
 
@@ -23,13 +23,11 @@
             android:id="@+id/change_task_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{viewModel.task_text}"
             android:hint="Задача" />
 
         <EditText
             android:id="@+id/change_task_review"
             android:layout_width="match_parent"
-            android:text="@{viewModel.review_text}"
             android:layout_height="wrap_content"
             android:hint="Описание задачи" />
 

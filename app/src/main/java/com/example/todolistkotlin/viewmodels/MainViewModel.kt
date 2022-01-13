@@ -1,4 +1,4 @@
-package com.example.todolistkotlin.ViewModels
+package com.example.todolistkotlin.viewmodels
 
 import android.util.Log
 import androidx.lifecycle.ViewModel

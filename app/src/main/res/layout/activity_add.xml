@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.todolistkotlin.ViewModels.AddViewModel" />
+            type="com.example.todolistkotlin.viewmodels.AddViewModel" />
 
 
     </data>
@@ -22,11 +22,15 @@
         <EditText
             android:id="@+id/input_task_name"
             android:layout_width="match_parent"
+            android:textColor="@color/black"
+            android:textColorHint="#51151414"
             android:layout_height="wrap_content"
             android:hint="Задача" />
 
         <EditText
             android:id="@+id/input_task_review"
+            android:textColor="@color/black"
+            android:textColorHint="#51151414"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Описание задачи" />
