@@ -13,7 +13,6 @@ class ListTaskAdapter(private val listener:(Task)->Unit, private val onDeleteIte
 
   val listTask:MutableList<Task> = mutableListOf()
 
-
     fun setData(newListTask:MutableList<Task>){
         listTask.clear()
         listTask.addAll(newListTask)
@@ -21,7 +20,17 @@ class ListTaskAdapter(private val listener:(Task)->Unit, private val onDeleteIte
 
     }
 
+    fun removeTask(item: Task){
+        val position = listTask.indexOf(item)
+        listTask.removeAt(position)
+        notifyItemRemoved(position)
 
+    }
+
+    fun removeAllItem(){
+        listTask.clear()
+        notifyDataSetChanged()
+    }
 
     class TaskViewHolder(item: View):RecyclerView.ViewHolder(item) {
 
@@ -37,14 +46,13 @@ class ListTaskAdapter(private val listener:(Task)->Unit, private val onDeleteIte
                 itemView.setOnClickListener { listener(taskObj)}
             }
 
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val convertView = inflater.inflate(R.layout.item_recyclerview,parent,false)
         return TaskViewHolder(convertView)
-}
+    }
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         holder.bindView(listTask[position],listener,onDeleteItem)
@@ -53,6 +61,5 @@ class ListTaskAdapter(private val listener:(Task)->Unit, private val onDeleteIte
     override fun getItemCount(): Int {
         return listTask.size
     }
-
 
 }

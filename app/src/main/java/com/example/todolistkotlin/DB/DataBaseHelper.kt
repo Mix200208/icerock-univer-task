@@ -43,21 +43,20 @@ class DataBaseHelper(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,n
         val query = "SELECT * FROM $TABLE_NAME"
         val db = this.readableDatabase
         var cursor: Cursor? = null
+
         if(db!=null){
             cursor = db.rawQuery(query,null)
         }
-
         return cursor
-
     }
 
     fun updateData(id:String,taskName:String,taskReview:String){
         val db:SQLiteDatabase = this.writableDatabase
-
         val cv = ContentValues()
         cv.put(COLUMN_TASK,taskName)
         cv.put(COLUMN_REVIEW,taskReview)
         val rows = db.update(TABLE_NAME, cv, "_id = ?", arrayOf(id))
+
         if (rows!=1){
             Log.e("Res","Good")
         }
@@ -65,8 +64,8 @@ class DataBaseHelper(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,n
 
     fun deleteData(id:String){
         val db:SQLiteDatabase = this.writableDatabase
-
         val res = db.delete(TABLE_NAME, "_id = ?", arrayOf(id))
+
         if (res!=1){
             Log.e("Res","Good")
         }

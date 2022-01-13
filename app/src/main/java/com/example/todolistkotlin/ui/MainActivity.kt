@@ -19,6 +19,7 @@ import com.example.todolistkotlin.model.Task
 class MainActivity : AppCompatActivity() {
 
     private val listTask:MutableList<Task> = mutableListOf()
+    private var taskAdapter: ListTaskAdapter? = null
     private val myDb  = DataBaseHelper(this)
 
     companion object {
@@ -30,31 +31,25 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        setUpAdapter()
+        setUpUi()
 
+    }
 
-        val taskAdapter = ListTaskAdapter({ val intent = Intent(this, EditActivity::class.java)
-            intent.putExtra(INTENT_PARCELABLE, it)
-            startActivity(intent)}, {myDb.deleteData(it.id.toString())
-            this.recreate()}).apply {
-            addAllData()
-            setData(listTask)
-        }
-
-
-       findViewById<RecyclerView>(R.id.task_rv).apply {
+    private fun setUpUi() {
+        findViewById<RecyclerView>(R.id.task_rv).apply {
 
             setHasFixedSize(true)
-            taskAdapter.setData(listTask)
+            taskAdapter?.setData(listTask)
             adapter = taskAdapter
             layoutManager = LinearLayoutManager(this.context)
 
         }
 
-
         findViewById<ImageButton>(R.id.createToDoButton).apply {
 
             setOnClickListener {
-                Intent(this.context,AddActivity::class.java).apply {
+                Intent(this.context, AddActivity::class.java).apply {
                     startActivity(this)
                 }
             }
@@ -62,18 +57,31 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-        findViewById<Button>(R.id.updateButton).apply{
+        findViewById<Button>(R.id.updateButton).apply {
             setOnClickListener {
                 listTask.clear()
                 addAllData()
-                taskAdapter.setData(listTask)
+                taskAdapter?.setData(listTask)
             }
-
-
         }
+    }
 
+    private fun setUpAdapter() {
+        taskAdapter = ListTaskAdapter(
+            listener = {
+                val intent = Intent(this, EditActivity::class.java)
+                intent.putExtra(INTENT_PARCELABLE, it)
+                startActivity(intent)
+            },
+            onDeleteItem = { task ->
+                myDb.deleteData(task.id.toString())
+                taskAdapter?.removeTask(task)
 
-
+            }
+        ).apply {
+            addAllData()
+            setData(listTask)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -86,7 +94,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(item.itemId==R.id.delete_all){
             myDb.deleteAllData()
-            this.recreate()
+            taskAdapter?.removeAllItem()
         }
         return super.onOptionsItemSelected(item)
     }
@@ -95,10 +103,16 @@ class MainActivity : AppCompatActivity() {
 
         val cursor = myDb.readAllData()
         if (cursor?.count==0){
-            Log.e("Answer"," DB empty")
+            Log.e("Answer"," DB is empty")
         }else{
             while (cursor?.moveToNext()!!){
-                listTask.add(Task(cursor.getInt(0),cursor.getString(1),cursor.getString(2)))
+                listTask.add(
+                    Task(
+                        cursor.getInt(0),
+                        cursor.getString(1),
+                        cursor.getString(2)
+                        )
+                )
             }
         }
     }
