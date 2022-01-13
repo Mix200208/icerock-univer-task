@@ -19,7 +19,6 @@ import com.example.todolistkotlin.model.Task
 
 class MainActivity : AppCompatActivity() {
 
-    private val listTask:MutableList<Task> = mutableListOf()
     private var taskAdapter: ListTaskAdapter? = null
     lateinit var mainViewModel:MainViewModel
 
@@ -30,7 +29,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding:ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-
         mainViewModel = ViewModelProvider(this,MainViewModelFactory(DataBaseHelperFactory.dB!!)).get(MainViewModel::class.java)
         setUpAdapter(binding)
         setUpUi(binding)
@@ -58,13 +56,6 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-        binding.updateButton.apply {
-            setOnClickListener {
-                mainViewModel.listTask.clear()
-                mainViewModel.addAllData()
-                taskAdapter?.setData(mainViewModel.listTask)
-            }
-        }
     }
 
     private fun setUpAdapter(binding:ActivityMainBinding) {

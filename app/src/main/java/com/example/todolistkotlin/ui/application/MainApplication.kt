@@ -12,7 +12,4 @@ class MainApplication: Application() {
 
     }
 
-
-
-
 }

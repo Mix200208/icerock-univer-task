@@ -21,21 +21,9 @@
             android:layout_height="match_parent"
             tools:listitem="@layout/item_recyclerview"
             android:background="@color/white"
-            android:layout_weight="1">
+            android:layout_weight="12">
 
         </androidx.recyclerview.widget.RecyclerView>
-
-        <Button
-            android:id="@+id/updateButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Обновить данные"
-            android:gravity="center"
-            android:background="@color/white"
-            android:layout_gravity="center"
-            style="?attr/materialButtonOutlinedStyle"
-            android:layout_marginBottom="5dp"
-            android:layout_weight="0.1" />
 
         <ImageButton
             android:id="@+id/createToDoButton"

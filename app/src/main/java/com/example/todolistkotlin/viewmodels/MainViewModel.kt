@@ -36,7 +36,4 @@ class MainViewModel(private val myDb:DataBaseHelper):ViewModel() {
     }
 
 
-
-
-
 }
