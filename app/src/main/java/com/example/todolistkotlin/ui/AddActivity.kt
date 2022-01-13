@@ -25,8 +25,8 @@ class AddActivity : AppCompatActivity() {
         binding.addTaskButton.apply {
             setOnClickListener {
                 val isValidated = addViewModel.validateData(
-                    binding.inputTaskName.toString(),
-                    binding.inputTaskReview.toString()
+                    binding.inputTaskName.text.toString(),
+                    binding.inputTaskReview.text.toString()
                 )
 
                 if (isValidated) {

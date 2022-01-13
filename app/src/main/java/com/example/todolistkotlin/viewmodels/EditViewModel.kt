@@ -10,5 +10,9 @@ class EditViewModel(val myDb:DataBaseHelper):ViewModel() {
         myDb.updateData(id,task_text,review_text)
     }
 
+    fun validateChangedTask(taskText:String,reviewText:String):Boolean{
+        return  ((taskText.isEmpty())||reviewText.isEmpty())
+    }
+
 
 }

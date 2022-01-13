@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.todolistkotlin.DB.DataBaseHelper
@@ -29,6 +30,14 @@ class EditActivity : AppCompatActivity() {
         binding.changeTaskReview.setText(task.review)
 
         binding.editTask.setOnClickListener {
+            val isValidated = editViewModel.validateChangedTask(
+                binding.changeTaskName.text.toString(),
+                binding.changeTaskReview.text.toString()
+            )
+            if (isValidated){
+                Toast.makeText(this,"Оба поля должны быть заполнены", Toast.LENGTH_SHORT).show()
+
+            }else{
                 editViewModel.updateTask(
                     task.id.toString(),
                     binding.changeTaskName.text.toString(),
@@ -39,6 +48,7 @@ class EditActivity : AppCompatActivity() {
                     startActivity(this)
                 }
             }
+        }
 
         }
 
